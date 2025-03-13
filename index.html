@@ -1,16 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post-Workout Meal Suggestions</title>
+<title>Post-Workout Meal Suggestion</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+h1, h2 {
+    color: #333;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+select, button {
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #4cae4c;
+}
+#mealSuggestion {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+#mealSuggestion h2 {
+    margin-top: 0;
+}
+</style>
 </head>
 <body>
-    <h1>Post-Workout Meal Suggestions</h1>
-    <p>Based on your recent workout, here's a meal suggestion to aid in muscle recovery:</p>
-    <ul>
-        <li><strong>Grilled Salmon with Quinoa and Broccoli:</strong> Grill salmon fillets and serve with a side of cooked quinoa and steamed broccoli. This meal provides high-quality protein and complex carbohydrates, essential for muscle repair and replenishment.</li>
-    </ul>
-    <p>Remember to stay hydrated and adjust portion sizes based on your workout intensity and personal energy needs.</p>
+
+<h1>Post-Workout Meal Suggestion</h1>
+
+<label for="workoutType">Select Workout Type:</label>
+<select id="workoutType">
+    <option value="weightLifting">Weight Lifting</option>
+    <option value="swimming">Swimming</option>
+    <option value="biking">Biking</option>
+    <option value="running">Running</option>
+</select>
+
+<button onclick="getMealSuggestion()">Get Meal Suggestion</button>
+
+<div id="mealSuggestion">
+    <h2>Suggested Meal:</h2>
+    <p id="mealText">Select your workout type and click the button for a meal suggestion.</p>
+</div>
+
+<script>
+const availableIngredients = [
+    "eggs", "tofu", "salmon", "lentils", "red beans", "black beans", "walnuts", "pecans",
+    "whole grain pasta", "potatoes", "whole grain bread", "sweet potatoes", "bananas", "apples",
+    "spinach", "onions", "broccoli", "peanut butter", "brown rice", "spelt bran", "avocados",
+    "feta cheese", "oat milk", "lemon juice", "mushrooms", "quinoa", "millet", "bulgur"
+];
+
+const mealSuggestions = {
+    weightLifting: [
+        "Salmon with quinoa and broccoli.",
+        "Tofu scramble with spinach and whole grain bread.",
+        "Lentil soup with whole grain bread.",
+        "Eggs with sweet potatoes and spinach.",
+        "Black bean and feta cheese salad with bulgur and onions.",
+        "Quinoa and black bean bowl with avocado and feta cheese.",
+        "Oat milk smoothie with tofu, banana and peanut butter.",
+        "Spelt bran pancakes with banana and walnuts (use eggs and oat milk for batter)."
+    ],
+    swimming: [
+        "Whole grain pasta with spinach and mushrooms, and a sprinkle of feta cheese.",
+        "Sweet potato and black bean bowl with brown rice and onions.",
+        "Banana and peanut butter on whole grain bread.",
+        "Oat milk smoothie with banana, peanut butter and spinach.",
+        "Quinoa salad with red beans, spinach and lemon juice.",
+        "Brown rice and lentil bowl with steamed broccoli.",
+        "Whole grain bread with avocado and egg.",
+        "Millet porridge with oat milk and banana, topped with pecans."
+    ],
+    biking: [
+        "Brown rice with lentils and spinach.",
+        "Whole grain bread with peanut butter and banana.",
+        "Potato and egg scramble with onions.",
+        "Millet with red beans and onions, and a side of steamed broccoli.",
+        "Bulgur salad with black beans, feta cheese and spinach.",
+        "Sweet potato and black bean chili (using red beans or black beans) with brown rice.",
+        "Whole grain pasta with mushrooms and spinach.",
+        "Banana and walnut butter (using peanut butter) on whole grain bread."
+    ],
+    running: [
+        "Sweet potato and black bean chili (using red beans or black beans) with brown rice.",
+        "Whole grain pasta with tofu and broccoli.",
+        "Banana and walnut butter (using peanut butter) on whole grain bread.",
+        "Quinoa bowl with lentils and spinach.",
+        "Millet porridge with oat milk and banana.",
+        "Brown rice and egg bowl with spinach and onions.",
+        "Whole grain bread with avocado and salmon.",
+        "Lentil and vegetable soup (using spinach, onions, broccoli, mushrooms) with whole grain bread."
+    ]
+};
+
+function getMealSuggestion() {
+    const workoutType = document.getElementById("workoutType").value;
+    const suggestions = mealSuggestions[workoutType];
+    if (suggestions && suggestions.length > 0) {
+        const randomIndex = Math.floor(Math.random() * suggestions.length);
+        const suggestion = suggestions[randomIndex];
+        document.getElementById("mealText").textContent = suggestion + " Enjoy!";
+    } else {
+        document.getElementById("mealText").textContent = "No meal suggestions available for this workout type.";
+    }
+}
+</script>
+
 </body>
 </html>
